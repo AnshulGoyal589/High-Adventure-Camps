@@ -1,0 +1,75 @@
+import type { Metadata, Viewport } from 'next'
+// import { Geist, Geist_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
+import { ClerkProvider } from '@clerk/nextjs'
+import { ContactPopup } from '@/components/contact-popup';
+import './globals.css'
+
+// const _geist = Geist({ subsets: ["latin"] });
+// const _geistMono = Geist_Mono({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: 'High Adventure Camps | Adventure Tours & Packages in Manali',
+  description: 'Experience thrilling adventure tours, trekking packages, and outdoor activities in Manali. High Adventure Camps offers unforgettable experiences for adventure seekers.',
+  keywords: 'adventure camps, Manali tours, trekking packages, adventure activities, outdoor experiences',
+  authors: [{ name: 'High Adventure Camps' }],
+  openGraph: {
+    title: 'High Adventure Camps | Adventure Tours & Packages in Manali',
+    description: 'Experience thrilling adventure tours, trekking packages, and outdoor activities in Manali.',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
+    generator: 'Anshul Goyal'
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#CC0000',
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <head>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'LocalBusiness',
+                name: 'High Adventure Camps',
+                description: 'Adventure tours and packages in Manali',
+                address: {
+                  '@type': 'PostalAddress',
+                  addressLocality: 'Manali',
+                  addressRegion: 'Himachal Pradesh',
+                  addressCountry: 'IN',
+                },
+                url: 'https://highventurecamps.com',
+                telephone: '+91-XXXXXXXXXX',
+                sameAs: [
+                  'https://facebook.com/highventurecamps',
+                  'https://instagram.com/highventurecamps',
+                ],
+              }),
+            }}
+          />
+        </head>
+        <body className={`font-sans antialiased bg-background text-foreground`}>
+          <ContactPopup />
+          {children}
+          <Analytics />
+        </body>
+      </html>
+    </ClerkProvider>
+  )
+}
