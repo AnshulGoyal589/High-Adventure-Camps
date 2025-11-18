@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
+import Image from 'next/image';
 
 export function Footer() {
   return (
@@ -11,9 +12,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-accent rounded flex items-center justify-center">
-                <span className="text-white font-bold">H</span>
-              </div>
+              <Image src="https://res.cloudinary.com/dumelzfsg/image/upload/v1763485387/header-logo_bjcrcq.png" alt="Logo" width={44} height={44} />
               <h3 className="font-bold text-lg">High Adventure Camps</h3>
             </div>
             <p className="text-sm opacity-90">
