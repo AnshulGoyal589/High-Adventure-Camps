@@ -1,24 +1,27 @@
 'use client';
 
-import { useState, useEffect } from 'react'; // Import useEffect
+import { useState, useEffect } from 'react';
 import { Play, X } from 'lucide-react';
 
 export function HeroVideo() {
   const [isPlaying, setIsPlaying] = useState(false);
-  
-  // THIS IS THE FIX: A state to ensure client-side-only parts render after hydration
   const [isClient, setIsClient] = useState(false);
 
-  // This effect runs only once on the client, after the component has mounted.
   useEffect(() => {
     setIsClient(true);
-  }, []); // The empty dependency array ensures it runs only on mount.
+  }, []);
 
+  // IMPORTANT: Replace this with the actual URL of the poster image you create.
+  const posterImageUrl = 'https://ik.imagekit.io/tskgtjqxr/WhatsApp%20Image%202025-11-20%20at%203.21.48%20PM.jpeg';
 
   return (
     <section className="relative w-full h-screen flex items-center justify-center bg-foreground overflow-hidden">
-      {/* Background Video/Image - This part is safe to render on the server */}
-      <div className="absolute inset-0">
+      {/* Background Video/Image Container */}
+      <div 
+        className="absolute inset-0"
+        // BEST PRACTICE: Add a CSS background image as a final fallback.
+        style={{ backgroundImage: `url(${posterImageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+      >
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/50 to-transparent z-10"></div>
         <video
           className="w-full h-full object-cover"
@@ -26,7 +29,8 @@ export function HeroVideo() {
           loop
           muted
           playsInline
-          // Adding a key can sometimes help React differentiate server/client nodes if issues persist
+          // THE CRITICAL FIX: Add the poster attribute here.
+          poster={posterImageUrl}
           key="hero-background-video"
         >
           <source src="https://ik.imagekit.io/tskgtjqxr/Manali%20Camp%20(3).mp4" type="video/mp4" />
@@ -34,8 +38,9 @@ export function HeroVideo() {
         </video>
       </div>
 
-      {/* Content - This is also safe */}
+      {/* Content - No changes needed here */}
       <div className="relative z-20 text-center max-w-2xl mx-auto px-4">
+        {/* ... your h1, p, and buttons are fine ... */}
         <h1 className="text-5xl md:text-6xl font-bold text-accent mb-6 text-balance">
           Experience Mountain Magic
         </h1>
@@ -54,9 +59,7 @@ export function HeroVideo() {
         </div>
       </div>
 
-      {/* Video Modal - MODIFIED FOR SAFETY */}
-      {/* We now check for `isClient` before rendering the modal.
-          This guarantees it's never part of the server-rendered HTML, preventing any mismatch. */}
+      {/* Video Modal - Your logic here is correct, you can uncomment it */}
       {/* {isClient && isPlaying && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
           <div className="relative w-full max-w-4xl">
@@ -71,7 +74,7 @@ export function HeroVideo() {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" // Added autoplay for better UX
+                src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID?autoplay=1"
                 title="High Adventure Camps"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
