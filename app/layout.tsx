@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 // import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
+// import { Analytics } from '@vercel/analytics/next'
 import { ClerkProvider } from '@clerk/nextjs'
 import { ContactPopup } from '@/components/contact-popup';
 import './globals.css'
@@ -113,7 +113,7 @@ export default function RootLayout({
         <body className={`font-sans antialiased bg-background text-foreground`}>
           <ContactPopup />
           {children}
-          <Analytics />
+          {/* <Analytics /> */}
         </body>
       </html>
     </ClerkProvider>
