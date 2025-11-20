@@ -1,14 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react'; // Import useEffect
 import { Play, X } from 'lucide-react';
 
 export function HeroVideo() {
   const [isPlaying, setIsPlaying] = useState(false);
+  
+  // THIS IS THE FIX: A state to ensure client-side-only parts render after hydration
+  const [isClient, setIsClient] = useState(false);
+
+  // This effect runs only once on the client, after the component has mounted.
+  useEffect(() => {
+    setIsClient(true);
+  }, []); // The empty dependency array ensures it runs only on mount.
+
 
   return (
     <section className="relative w-full h-screen flex items-center justify-center bg-foreground overflow-hidden">
-      {/* Background Video/Image */}
+      {/* Background Video/Image - This part is safe to render on the server */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/50 to-transparent z-10"></div>
         <video
@@ -17,13 +26,15 @@ export function HeroVideo() {
           loop
           muted
           playsInline
+          // Adding a key can sometimes help React differentiate server/client nodes if issues persist
+          key="hero-background-video"
         >
           <source src="https://ik.imagekit.io/tskgtjqxr/Manali%20Camp%20(3).mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
 
-      {/* Content */}
+      {/* Content - This is also safe */}
       <div className="relative z-20 text-center max-w-2xl mx-auto px-4">
         <h1 className="text-5xl md:text-6xl font-bold text-accent mb-6 text-balance">
           Experience Mountain Magic
@@ -43,8 +54,10 @@ export function HeroVideo() {
         </div>
       </div>
 
-      {/* Video Modal */}
-      {isPlaying && (
+      {/* Video Modal - MODIFIED FOR SAFETY */}
+      {/* We now check for `isClient` before rendering the modal.
+          This guarantees it's never part of the server-rendered HTML, preventing any mismatch. */}
+      {isClient && isPlaying && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
           <div className="relative w-full max-w-4xl">
             <button
@@ -58,7 +71,7 @@ export function HeroVideo() {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" // Added autoplay for better UX
                 title="High Adventure Camps"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

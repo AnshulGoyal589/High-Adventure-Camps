@@ -38,15 +38,19 @@ export async function PUT(
       );
     }
 
-    const { db } = await connectToDatabase();
+    const { id } = params;
     const data: Partial<Tour> = await request.json();
 
+    const { _id, ...updateData } = data;
+
+    const { db } = await connectToDatabase();
+
     const result = await db.collection('tours').updateOne(
-      { _id: new ObjectId(params.id) },
+      { _id: new ObjectId(id) },
       {
         $set: {
-          ...data,
-          updatedAt: new Date(),
+          ...updateData, 
+          updatedAt: new Date(), 
         },
       }
     );
@@ -55,12 +59,19 @@ export async function PUT(
       return NextResponse.json({ error: 'Tour not found' }, { status: 404 });
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json(
+      { message: 'Tour updated successfully' },
+      { status: 200 }
+    );
   } catch (error) {
     console.error('Error updating tour:', error);
+    if (error instanceof Error && error.message.includes('Argument passed')) {
+      return NextResponse.json({ error: 'Invalid Tour ID format' }, { status: 400 });
+    }
     return NextResponse.json({ error: 'Failed to update tour' }, { status: 500 });
   }
 }
+
 
 export async function DELETE(
   request: NextRequest,

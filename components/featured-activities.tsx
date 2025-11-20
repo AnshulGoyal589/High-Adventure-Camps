@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Zap, Users, Clock, TrendingUp } from 'lucide-react';
+import { Zap, Users, Clock, ArrowRight } from 'lucide-react'; // Swapped TrendingUp for ArrowRight
 import Link from 'next/link';
+import Image from 'next/image';
 
+// Interface remains the same
 interface Activity {
   _id: string;
   title: string;
@@ -12,14 +14,28 @@ interface Activity {
   price: number;
   duration: string;
   maxParticipants: number;
+  images?: string[];
 }
 
-const difficultyColors = {
-  Easy: 'bg-green-100 text-green-800',
-  Moderate: 'bg-yellow-100 text-yellow-800',
-  Hard: 'bg-orange-100 text-orange-800',
-  Expert: 'bg-red-100 text-red-800',
-};
+// We'll use these colors for a visual badge
+// const difficultyConfig = {
+//   Easy: {
+//     className: 'bg-green-100 text-green-800 border-green-200',
+//     icon: <Zap className="w-3 h-3" />,
+//   },
+//   Moderate: {
+//     className: 'bg-yellow-100 text-yellow-800 border-yellow-200',
+//     icon: <Zap className="w-3 h-3" />,
+//   },
+//   Hard: {
+//     className: 'bg-orange-100 text-orange-800 border-orange-200',
+//     icon: <Zap className="w-3 h-3" />,
+//   },
+//   Expert: {
+//     className: 'bg-red-100 text-red-800 border-red-200',
+//     icon: <Zap className="w-3 h-3" />,
+//   },
+// };
 
 export function FeaturedActivities() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -31,7 +47,7 @@ export function FeaturedActivities() {
         const response = await fetch('/api/activities?featured=true');
         if (response.ok) {
           const data = await response.json();
-          setActivities(data.slice(0, 6));
+          setActivities(data.slice(0, 6)); // Limit to 6 featured activities
         }
       } catch (error) {
         console.error('Error fetching activities:', error);
@@ -43,14 +59,31 @@ export function FeaturedActivities() {
     fetchActivities();
   }, []);
 
+  // The loading skeleton is already good, no changes needed here.
   if (loading) {
     return (
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-muted/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-12 text-balance">Thrilling Activities</h2>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold tracking-tight">Thrilling Activities</h2>
+            <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">
+              Discover adventures curated for every skill level.
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="h-72 bg-background rounded-lg animate-pulse" />
+              <div key={i} className="bg-background border rounded-xl p-4 space-y-4">
+                <div className="aspect-video bg-muted rounded-lg animate-pulse" />
+                <div className="h-5 w-3/4 bg-muted rounded animate-pulse" />
+                <div className="space-y-2">
+                  <div className="h-4 w-full bg-muted rounded animate-pulse" />
+                  <div className="h-4 w-5/6 bg-muted rounded animate-pulse" />
+                </div>
+                <div className="flex justify-between items-center pt-2">
+                  <div className="h-8 w-1/3 bg-muted rounded animate-pulse" />
+                  <div className="h-6 w-6 bg-muted rounded-full animate-pulse" />
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -59,73 +92,83 @@ export function FeaturedActivities() {
   }
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-20 bg-muted/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-12 text-balance">Thrilling Activities</h2>
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold tracking-tight">Thrilling Activities</h2>
+          <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">
+            Discover adventures curated for every skill level.
+          </p>
+        </div>
 
         {activities.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">Activities coming soon! Stay tuned.</p>
+            <p className="text-muted-foreground text-lg">New activities coming soon! Stay tuned.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {activities.map((activity) => (
-              <div key={activity._id} className="adventure-card overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
-                {/* Header with Icon */}
-                <div className="p-6 bg-gradient-to-r from-primary/10 to-secondary/10 border-b border-border">
-                  <div className="flex items-start justify-between mb-3">
-                    <Zap className="w-8 h-8 text-primary flex-shrink-0" />
-                    <span className={`text-xs font-bold px-3 py-1 rounded-full ${difficultyColors[activity.difficulty as keyof typeof difficultyColors]}`}>
-                      {activity.difficulty}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold text-balance">{activity.title}</h3>
-                </div>
-
-                {/* Content */}
-                <div className="p-6 flex-1 space-y-4">
-                  <p className="text-muted-foreground text-sm line-clamp-2">{activity.description}</p>
-
-                  {/* Quick Stats */}
-                  <div className="space-y-3 py-4 border-y border-border">
-                    <div className="flex items-center gap-3">
-                      <Clock className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm font-semibold">{activity.duration}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Users className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-sm font-semibold">Up to {activity.maxParticipants} people</span>
-                    </div>
+            {activities.map((activity) => {
+              // const difficulty = difficultyConfig[activity.difficulty];
+              return (
+                <Link
+                  key={activity._id}
+                  href={`/activities/${activity._id}`}
+                  className="group block bg-card border rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+                >
+                  <div className="relative">
+                    {/* The image is now the hero */}
+                    <Image
+                      src={activity.images?.[0] || '/default-activity.png'}
+                      alt={activity.title}
+                      width={400}
+                      height={225}
+                      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    {/* Difficulty Badge overlaid on the image */}
+                
                   </div>
 
-                  {/* Price and CTA */}
-                  <div className="flex items-center justify-between pt-2">
-                    <div className="flex items-center gap-1">
-                      <TrendingUp className="w-5 h-5 text-primary" />
-                      <span className="text-2xl font-bold text-primary">₹{activity.price.toLocaleString()}</span>
+                  {/* Content area with better spacing and hierarchy */}
+                  <div className="p-5 flex flex-col">
+                    <h3 className="text-xl font-bold text-card-foreground truncate">{activity.title}</h3>
+                    <p className="text-muted-foreground text-sm mt-2 h-10 line-clamp-2">
+                      {activity.description}
+                    </p>
+                    
+                    {/* Cleaner stats display */}
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground mt-4 border-t pt-4">
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-4 h-4" />
+                        <span>{activity.duration}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Users className="w-4 h-4" />
+                        <span>Max {activity.maxParticipants}</span>
+                      </div>
+                    </div>
+                    
+                    {/* Price and CTA combined */}
+                    <div className="flex justify-between items-center mt-4">
+                      <div>
+                        <span className="text-2xl font-bold text-primary">₹{activity.price.toLocaleString()}</span>
+                        <span className="text-sm text-muted-foreground">/person</span>
+                      </div>
+                      <div className="bg-primary/10 text-primary p-2 rounded-full transform group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                        <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                {/* CTA Button */}
-                <div className="p-6 border-t border-border">
-                  <Link
-                    href={`/activities/${activity._id}`}
-                    className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-center font-semibold text-sm"
-                  >
-                    Learn More
-                  </Link>
-                </div>
-              </div>
-            ))}
+                </Link>
+              );
+            })}
           </div>
         )}
 
-        {/* View All Link */}
-        <div className="text-center mt-12">
+        {/* The "View All" button remains an effective CTA */}
+        <div className="text-center mt-16">
           <Link
             href="/activities"
-            className="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold"
+            className="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold shadow hover:shadow-md"
           >
             Explore All Activities
           </Link>

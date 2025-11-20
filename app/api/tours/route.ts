@@ -40,18 +40,18 @@ export async function POST(request: NextRequest) {
     }
 
     const { db } = await connectToDatabase();
-    const data: Tour = await request.json();
+    const data = (await request.json()) as Tour;
+
+    const {_id, ...tourData} = data;
 
     const tour = {
-      ...data,
+      ...tourData,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
 
-    // Remove any string _id before inserting to satisfy MongoDB types
-    const { _id, ...tourDoc } = tour;
-    const result = await db.collection('tours').insertOne(tourDoc);
-    return NextResponse.json({ ...tourDoc, _id: result.insertedId }, { status: 201 });
+    const result = await db.collection('tours').insertOne(tour);
+    return NextResponse.json({ ...tour, _id: result.insertedId }, { status: 201 });
   } catch (error) {
     console.error('Error creating tour:', error);
     return NextResponse.json({ error: 'Failed to create tour' }, { status: 500 });

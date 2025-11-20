@@ -37,15 +37,16 @@ export async function PUT(
         { status: 403 }
       );
     }
+    const data: Partial<Activity> = await request.json();
+    const { _id, ...updateData } = data;
 
     const { db } = await connectToDatabase();
-    const data: Partial<Activity> = await request.json();
 
     const result = await db.collection('activities').updateOne(
-      { _id: new ObjectId(params.id) },
+      { _id: new ObjectId(params.id) }, 
       {
         $set: {
-          ...data,
+          ...updateData,
           updatedAt: new Date(),
         },
       }
@@ -55,12 +56,22 @@ export async function PUT(
       return NextResponse.json({ error: 'Activity not found' }, { status: 404 });
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ message: 'Activity updated successfully' }, { status: 200 });
+
   } catch (error) {
     console.error('Error updating activity:', error);
-    return NextResponse.json({ error: 'Failed to update activity' }, { status: 500 });
+    
+    if (error instanceof Error && error.message.includes('Argument passed')) {
+      return NextResponse.json({ error: 'Invalid Activity ID format' }, { status: 400 });
+    }
+
+    return NextResponse.json(
+      { error: 'Failed to update activity' },
+      { status: 500 }
+    );
   }
 }
+
 
 export async function DELETE(
   request: NextRequest,

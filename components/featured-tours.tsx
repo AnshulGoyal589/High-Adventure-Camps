@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { MapPin, Users, Calendar, DollarSign } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Tour {
   _id: string;
@@ -15,7 +16,7 @@ interface Tour {
     nights: number;
   };
   maxGroupSize: number;
-  image?: string;
+  images?: string[];
 }
 
 export function FeaturedTours() {
@@ -71,8 +72,18 @@ export function FeaturedTours() {
                 {/* Image */}
                 <div className="w-full h-48 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300">
                   <div className="text-center">
-                    <MapPin className="w-8 h-8 text-primary mx-auto mb-2" />
-                    <p className="text-sm text-muted-foreground font-semibold">{tour.location}</p>
+                    {tour.images ? (
+                      <Image
+                        src={tour.images[0]}
+                        alt={tour.title}
+                        width={400}
+                        height={192}
+                      />
+                    ) : (
+                      <div className="w-full h-48 bg-muted flex items-center justify-center">
+                        <span className="text-muted-foreground">No Image Available</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
