@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
-import { Booking, Tour } from './types';
+import { Booking, ContactMessage, Tour } from './types';
 
-// Configure your email service
+
 const transporter = nodemailer.createTransport({
   service: process.env.EMAIL_SERVICE || 'gmail',
   auth: {
@@ -183,6 +183,65 @@ export async function sendAdminBookingNotification(booking: Booking, tour: Tour)
     return true;
   } catch (error) {
     console.error('Error sending admin notification:', error);
+    return false;
+  }
+}
+
+
+export async function sendContactUsMessage(data: ContactMessage) {
+  const emailHtml = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+          .header { background: #cc0000; color: white; padding: 20px; text-align: center; }
+          .content { background: #f9f9f9; padding: 20px; }
+          .details { background: white; border: 1px solid #ddd; padding: 15px; }
+          .row { padding: 8px 0; border-bottom: 1px solid #eee; }
+          .row strong { display: inline-block; width: 100px; color: #555; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h2>New Contact Inquiry Received</h2>
+          </div>
+          <div class="content">
+            <p>A user has submitted a contact form on the website. Please respond promptly.</p>
+            
+            <div class="details">
+              <div class="row">
+                <strong>Name:</strong> ${data.name}
+              </div>
+              <div class="row">
+                <strong>Email:</strong> ${data.email}
+              </div>
+              <div class="row">
+                <strong>Phone:</strong> ${data.phone}
+              </div>
+              <div class="row" style="border-bottom: none; margin-top: 15px;">
+                <strong>Message:</strong>
+                <p style="white-space: pre-wrap; margin: 5px 0 0 0; padding-left: 10px; border-left: 2px solid #cc0000;">${data.message}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+  `;
+
+  try {
+    await transporter.sendMail({
+      from: process.env.EMAIL_FROM,
+      to: process.env.ADMIN_EMAIL || process.env.EMAIL_FROM || '', 
+      subject: `[Contact Form] New Inquiry from ${data.name}`,
+      html: emailHtml,
+    });
+    return true;
+  } catch (error) {
+    console.error('Error sending contact message notification:', error);
     return false;
   }
 }

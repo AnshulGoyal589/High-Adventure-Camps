@@ -21,6 +21,7 @@ const isPublicRoute = createRouteMatcher([
   '/api/payment/create-order',
   '/api/payment/verify-payment',
   '/api/bookings/(.*)',
+  '/api/contact',
   '/api/leads',
 ]);
 

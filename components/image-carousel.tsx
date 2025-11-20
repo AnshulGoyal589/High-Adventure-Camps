@@ -15,11 +15,11 @@ export function ImageCarousel() {
   const [autoPlay, setAutoPlay] = useState(true);
 
   const images: CarouselImage[] = [
-    { id: '1', src: '/placeholder.svg?height=600&width=800', alt: 'Mountain Trekking' },
-    { id: '2', src: '/placeholder.svg?height=600&width=800', alt: 'Camping Experience' },
-    { id: '3', src: '/placeholder.svg?height=600&width=800', alt: 'Rock Climbing' },
-    { id: '4', src: '/placeholder.svg?height=600&width=800', alt: 'Paragliding' },
-    { id: '5', src: '/placeholder.svg?height=600&width=800', alt: 'River Rafting' },
+    { id: '1', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763563724/camping_az3vsp.jpg', alt: 'Camping Experience' },
+    { id: '2', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763564830/zipline_acsjm9.jpg', alt: 'Zipline' },
+    { id: '3', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763564831/burma_mrldoy.jpg', alt: 'Burma Bridge' },
+    { id: '4', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763564839/log_cvly0f.jpg', alt: 'Bamboo Bridge Step Walk' },
+    { id: '5', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763564830/commando_tf2qjg.jpg', alt: 'Commando Net' },
   ];
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export function ImageCarousel() {
 
         <div className="relative group">
           {/* Main Carousel */}
-          <div className="relative h-96 md:h-screen max-h-96 md:max-h-96 rounded-lg overflow-hidden bg-foreground">
+          <div className="relative h-96 md:h-screen max-h-96 md:max-h-120 rounded-lg overflow-hidden bg-foreground">
             <img
               src={images[currentIndex].src || "/placeholder.svg"}
               alt={images[currentIndex].alt}

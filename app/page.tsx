@@ -10,6 +10,7 @@ import { CTASection } from '@/components/cta-section';
 import { FeaturedTours } from '@/components/featured-tours';
 import { FeaturedActivities } from '@/components/featured-activities';
 import type { Metadata } from 'next';
+import { FAQSection } from '@/components/faq-section';
 
 export const metadata: Metadata = {
   title: 'High Adventure Camps | Home',
@@ -31,6 +32,7 @@ export default function Home() {
       <FeaturedActivities />
       <StatsSection />
       <WhyChooseUs />
+      <FAQSection/>
       <TestimonialsSection />
       <CTASection />
       <Footer />

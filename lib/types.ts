@@ -96,3 +96,10 @@ export interface Booking {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface ContactMessage {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}

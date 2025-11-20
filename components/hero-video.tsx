@@ -11,11 +11,16 @@ export function HeroVideo() {
       {/* Background Video/Image */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/50 to-transparent z-10"></div>
-        <img
-          src="/placeholder.svg?height=1080&width=1920"
-          alt="Mountain Adventure"
+        <video
           className="w-full h-full object-cover"
-        />
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="https://ik.imagekit.io/tskgtjqxr/Manali%20Camp%20(3).mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
 
       {/* Content */}
