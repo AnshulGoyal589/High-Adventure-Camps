@@ -57,7 +57,7 @@ export function HeroVideo() {
       {/* Video Modal - MODIFIED FOR SAFETY */}
       {/* We now check for `isClient` before rendering the modal.
           This guarantees it's never part of the server-rendered HTML, preventing any mismatch. */}
-      {isClient && isPlaying && (
+      {/* {isClient && isPlaying && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
           <div className="relative w-full max-w-4xl">
             <button
@@ -80,7 +80,7 @@ export function HeroVideo() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </section>
   );
 }
