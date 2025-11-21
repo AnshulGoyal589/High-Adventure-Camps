@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '@/lib/mongodb';
 import { Lead } from '@/lib/types';
-import { validateEmail, validatePhone } from '@/lib/utils/validations';
+import { validateEmail } from '@/lib/utils/validations';
 import { isAdmin } from '@/lib/admin-auth';
 import { auth } from '@clerk/nextjs/server';
+import { sendLeadNotification } from '@/lib/email-service';
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,11 +20,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid email format' }, { status: 400 });
     }
 
-    if (!validatePhone(data.phone)) {
-      return NextResponse.json({ error: 'Invalid phone number' }, { status: 400 });
-    }
+    // if (!validatePhone(data.phone)) {
+    //   return NextResponse.json({ error: 'Invalid phone number' }, { status: 400 });
+    // }
 
-    // strip _id from client payload to avoid string vs ObjectId mismatch
     const { _id, ...rest } = data as any;
 
     const lead = {
@@ -32,6 +32,12 @@ export async function POST(request: NextRequest) {
     };
 
     const result = await db.collection('leads').insertOne(lead);
+
+    try {
+      await sendLeadNotification(data);
+    } catch (emailError) {
+      console.error('API succeeded, but failed to send email:', emailError);
+    }
     return NextResponse.json({ ...lead, _id: result.insertedId }, { status: 201 });
   } catch (error) {
     console.error('Error creating lead:', error);

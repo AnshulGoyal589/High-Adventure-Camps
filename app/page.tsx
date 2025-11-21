@@ -2,7 +2,6 @@ import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { HeroVideo } from '@/components/hero-video';
 import { AboutSection } from '@/components/about-section';
-import { ImageCarousel } from '@/components/image-carousel';
 import { TestimonialsSection } from '@/components/testimonials-section';
 import { StatsSection } from '@/components/stats-section';
 import { WhyChooseUs } from '@/components/why-choose-us';
@@ -11,6 +10,8 @@ import { FeaturedTours } from '@/components/featured-tours';
 import { FeaturedActivities } from '@/components/featured-activities';
 import type { Metadata } from 'next';
 import { FAQSection } from '@/components/faq-section';
+import { AdventureCarousel } from '@/components/adventure-carousel';
+import { ProfessionalImageGallery } from '@/components/image-carousel';
 
 export const metadata: Metadata = {
   title: 'High Adventure Camps | Home',
@@ -27,7 +28,8 @@ export default function Home() {
       <Navbar />
       <HeroVideo />
       <AboutSection />
-      <ImageCarousel />
+      <AdventureCarousel />
+      <ProfessionalImageGallery />
       <FeaturedTours />
       <FeaturedActivities />
       <StatsSection />

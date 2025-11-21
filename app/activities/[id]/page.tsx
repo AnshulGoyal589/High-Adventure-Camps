@@ -100,7 +100,7 @@ export default function ActivityDetail() {
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <Clock className="text-primary" size={20} />
-                  <span className="font-semibold">{activity.duration} hours</span>
+                  <span className="font-semibold">{activity.duration} minutes</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MapPin className="text-primary" size={20} />
@@ -160,7 +160,7 @@ export default function ActivityDetail() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">Duration</p>
-                    <p className="font-semibold text-lg">{activity.duration} hours</p>
+                    <p className="font-semibold text-lg">{activity.duration} minutes</p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">Maximum Participants</p>
@@ -186,7 +186,7 @@ export default function ActivityDetail() {
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Duration</span>
-                    <span className="font-semibold">{activity.duration} hours</span>
+                    <span className="font-semibold">{activity.duration} minutes</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Difficulty</span>

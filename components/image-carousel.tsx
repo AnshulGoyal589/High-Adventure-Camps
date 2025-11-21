@@ -1,130 +1,156 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import Image from 'next/image';
 
-interface CarouselImage {
+interface GalleryImage {
   id: string;
   src: string;
   alt: string;
 }
 
-export function ImageCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [autoPlay, setAutoPlay] = useState(true);
+// IMPORTANT: Replace these with your actual 20+ image URLs and alt text.
+const images: GalleryImage[] = [
+    { id: '1', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709865/DSC04147_ytsivq.jpg', alt: 'A vibrant camping site at dusk' },
+    { id: '2', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709862/DSC03378_uilksf.jpg', alt: 'Person ziplining across a valley' },
+    { id: '3', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709858/DSC08839_vuvb1e.jpg', alt: 'Crossing a Burma Bridge high above the ground' },
+    { id: '4', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709858/DJI_0313_j7rsdm.jpg', alt: 'Navigating a bamboo bridge' },
+    { id: '5', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709856/DJI_0307_xo9ma6.jpg', alt: 'Climbing a commando net challenge' },
+    { id: '6', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709855/DSC04199_o1excm.jpg', alt: 'Rock climbing a steep cliff face' },
+    { id: '7', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709855/DSC04209_yhaivm.jpg', alt: 'Rappelling down a waterfall' },
+    { id: '8', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709854/4_qhby34.jpg', alt: 'Group trekking through a lush mountain trail' },
+    { id: '9', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709854/DSC04160_hpkosv.jpg', alt: 'Cozy tent pitched under the stars' },
+    { id: '10', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709853/DSC04166_uq5hhz.jpg', alt: 'Team building games in an open field' },
+    { id: '11', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709853/DSC09422_j2yghi.jpg', alt: 'Mountaineers reaching a snowy summit' },
+    { id: '12', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709852/log_uunul8.jpg', alt: 'Peaceful nature walk through a dense forest' },
+    { id: '13', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709852/DSC04153_ly2slk.jpg', alt: 'Aerial view of the adventure camp' },
+    { id: '14', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709850/burma_jzkksy.jpg', alt: 'Balancing on a wooden beam' },
+    { id: '15', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709849/commando_xyctbx.jpg', alt: 'Crossing a rustic bamboo bridge over a stream' },
+    { id: '16', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709849/DJI_0300_z93mjf.jpg', alt: 'Navigating a challenging net walk' },
+    { id: '17', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709848/zipline_if0jo5.jpg', alt: 'Carefully walking across a log bridge' },
+    { id: '18', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709846/2_wdx1qn.jpg', alt: 'Adventurer on a high-ropes course' },
+    { id: '19', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709845/1_hijqjs.jpg', alt: 'Excitement on the zipline' },
+    { id: '20', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709845/DSC08893_plpijc.jpg', alt: 'Conquering the commando net' },
+];
 
-  const images: CarouselImage[] = [
-    { id: '1', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763563724/camping_az3vsp.jpg', alt: 'Camping Experience' },
-    { id: '2', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763564830/zipline_acsjm9.jpg', alt: 'Zipline' },
-    { id: '3', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763564831/burma_mrldoy.jpg', alt: 'Burma Bridge' },
-    { id: '4', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763564839/log_cvly0f.jpg', alt: 'Bamboo Bridge Step Walk' },
-    { id: '5', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763564830/commando_tf2qjg.jpg', alt: 'Commando Net' },
-  ];
+export function ProfessionalImageGallery() {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
-  useEffect(() => {
-    if (!autoPlay) return;
+  const openLightbox = (index: number) => {
+    setSelectedImageIndex(index);
+    setLightboxOpen(true);
+  };
 
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [autoPlay, images.length]);
-
-  const goToPrevious = () => {
-    setAutoPlay(false);
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  const closeLightbox = () => {
+    setLightboxOpen(false);
   };
 
   const goToNext = () => {
-    setAutoPlay(false);
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    if (selectedImageIndex === null) return;
+    setSelectedImageIndex((prevIndex) => (prevIndex! + 1) % images.length);
   };
 
+  const goToPrevious = () => {
+    if (selectedImageIndex === null) return;
+    setSelectedImageIndex((prevIndex) => (prevIndex! - 1 + images.length) % images.length);
+  };
+
+  // Effect for keyboard navigation in lightbox
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!lightboxOpen) return;
+      if (e.key === 'ArrowRight') goToNext();
+      if (e.key === 'ArrowLeft') goToPrevious();
+      if (e.key === 'Escape') closeLightbox();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxOpen, selectedImageIndex]);
+
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Gallery of Adventures</h2>
-          <p className="text-xl text-muted-foreground">Moments that inspire wanderlust</p>
+          <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">
+            Our Gallery
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">Moments of Adventure</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            Explore a collection of unforgettable experiences captured at our camps. Each photo tells a story of excitement, nature, and discovery.
+          </p>
         </div>
 
-        <div className="relative group">
-          {/* Main Carousel */}
-          <div className="relative h-96 md:h-screen max-h-96 md:max-h-120 rounded-lg overflow-hidden bg-foreground">
-            <img
-              src={images[currentIndex].src || "/placeholder.svg"}
-              alt={images[currentIndex].alt}
-              className="w-full h-full object-cover transition-opacity duration-500"
-            />
-            
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-
-            {/* Caption */}
-            <div className="absolute bottom-8 left-8 text-white">
-              <h3 className="text-2xl font-bold">{images[currentIndex].alt}</h3>
-            </div>
-          </div>
-
-          {/* Navigation Buttons */}
-          <button
-            onClick={goToPrevious}
-            onMouseEnter={() => setAutoPlay(false)}
-            onMouseLeave={() => setAutoPlay(true)}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 bg-primary hover:bg-primary/90 text-white rounded-full transition-all opacity-0 group-hover:opacity-100"
-            aria-label="Previous image"
-          >
-            <ChevronLeft size={24} />
-          </button>
-
-          <button
-            onClick={goToNext}
-            onMouseEnter={() => setAutoPlay(false)}
-            onMouseLeave={() => setAutoPlay(true)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 bg-primary hover:bg-primary/90 text-white rounded-full transition-all opacity-0 group-hover:opacity-100"
-            aria-label="Next image"
-          >
-            <ChevronRight size={24} />
-          </button>
-
-          {/* Dots */}
-          <div className="flex justify-center gap-2 mt-6">
-            {images.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => {
-                  setAutoPlay(false);
-                  setCurrentIndex(idx);
-                }}
-                className={`h-3 rounded-full transition-all ${
-                  idx === currentIndex ? 'bg-primary w-8' : 'bg-muted w-3 hover:bg-muted-foreground'
-                }`}
-                aria-label={`Go to image ${idx + 1}`}
+        {/* Image Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {images.map((img, idx) => (
+            <button
+              key={img.id}
+              onClick={() => openLightbox(idx)}
+              className="group relative block w-full aspect-square overflow-hidden rounded-lg shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
               />
-            ))}
-          </div>
-
-          {/* Thumbnails */}
-          <div className="flex gap-4 mt-8 overflow-x-auto pb-4">
-            {images.map((img, idx) => (
-              <button
-                key={idx}
-                onClick={() => {
-                  setAutoPlay(false);
-                  setCurrentIndex(idx);
-                }}
-                className={`flex-shrink-0 h-20 w-24 rounded-lg overflow-hidden transition-all border-2 ${
-                  idx === currentIndex ? 'border-primary' : 'border-transparent opacity-60 hover:opacity-100'
-                }`}
-              >
-                <img src={img.src || "/placeholder.svg"} alt={img.alt} className="w-full h-full object-cover" />
-              </button>
-            ))}
-          </div>
+              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
+          ))}
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && selectedImageIndex !== null && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center animate-in fade-in duration-300 backdrop-blur-sm">
+          {/* Main Image Display */}
+          <div className="relative w-[95vw] h-[90vh] flex items-center justify-center">
+            <Image
+              key={images[selectedImageIndex].id} // Force re-render on change for animation
+              src={images[selectedImageIndex].src}
+              alt={images[selectedImageIndex].alt}
+              fill
+              className="object-contain animate-in fade-in zoom-in-95 duration-300"
+            />
+          </div>
+
+          {/* Close Button */}
+          <button
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 z-50 p-2 bg-black/50 text-white rounded-full hover:bg-black/80 transition"
+            aria-label="Close gallery"
+          >
+            <X size={28} />
+          </button>
+          
+          {/* Previous Button */}
+          <button
+            onClick={goToPrevious}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-2 bg-black/50 text-white rounded-full hover:bg-black/80 transition hidden sm:block"
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={32} />
+          </button>
+          
+          {/* Next Button */}
+          <button
+            onClick={goToNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-2 bg-black/50 text-white rounded-full hover:bg-black/80 transition hidden sm:block"
+            aria-label="Next image"
+          >
+            <ChevronRight size={32} />
+          </button>
+
+          {/* Image Title */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 p-2 px-4 bg-black/50 text-white text-center rounded-lg text-sm md:text-base">
+            {images[selectedImageIndex].alt}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

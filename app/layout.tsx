@@ -1,8 +1,8 @@
+// app/layout.tsx (COMPLETE MODIFIED CODE)
 import type { Metadata, Viewport } from 'next'
-// import { Geist, Geist_Mono } from 'next/font/google'
-// import { Analytics } from '@vercel/analytics/next'
 import { ClerkProvider } from '@clerk/nextjs'
 import { ContactPopup } from '@/components/contact-popup';
+import { FloatingActionButtons } from '@/components/floating-action-buttons'; // <-- IMPORT NEW COMPONENT
 import './globals.css'
 
 
@@ -101,7 +101,7 @@ export default function RootLayout({
                   addressCountry: 'IN',
                 },
                 url: 'https://highventurecamps.com',
-                telephone: '+91-XXXXXXXXXX',
+                telephone: '+91-XXXXXXXXXX', // Remember to update this
                 sameAs: [
                   'https://facebook.com/highventurecamps',
                   'https://instagram.com/highventurecamps',
@@ -113,7 +113,7 @@ export default function RootLayout({
         <body className={`font-sans antialiased bg-background text-foreground`}>
           <ContactPopup />
           {children}
-          {/* <Analytics /> */}
+          <FloatingActionButtons /> {/* <-- ADD THE BUTTONS COMPONENT HERE */}
         </body>
       </html>
     </ClerkProvider>

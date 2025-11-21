@@ -245,3 +245,86 @@ export async function sendContactUsMessage(data: ContactMessage) {
     return false;
   }
 }
+
+export interface LeadData {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  interests: string[];
+}
+
+export async function sendLeadNotification(data: LeadData) {
+  const interestsHtml = data.interests.length > 0 
+    ? `<ul>${data.interests.map(i => `<li>${i}</li>`).join('')}</ul>`
+    : '<p>No specific interests selected.</p>';
+
+  const emailHtml = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <style>
+          body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; }
+          .container { max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+          .header { background-color: #000; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+          .header h2 { margin: 0; }
+          .content { padding: 20px; }
+          .details { background-color: #f9f9f9; border-left: 4px solid #cc0000; padding: 15px; margin-bottom: 20px; }
+          .row { margin-bottom: 12px; }
+          .row strong { display: block; color: #555; margin-bottom: 4px; font-size: 14px; }
+          .message { white-space: pre-wrap; background-color: #fff; padding: 15px; border-radius: 4px; border: 1px solid #eee; }
+          ul { padding-left: 20px; margin: 0; }
+          li { margin-bottom: 5px; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h2>New Lead from Website Popup</h2>
+          </div>
+          <div class="content">
+            <p>A new lead has been submitted through the contact popup. Please follow up promptly.</p>
+            
+            <div class="details">
+              <div class="row">
+                <strong>Name:</strong>
+                <span>${data.name}</span>
+              </div>
+              <div class="row">
+                <strong>Email:</strong>
+                <span>${data.email}</span>
+              </div>
+              <div class="row">
+                <strong>Phone:</strong>
+                <span>${data.phone}</span>
+              </div>
+              <div class="row">
+                <strong>Interested In:</strong>
+                ${interestsHtml}
+              </div>
+            </div>
+            
+            <div class="row">
+              <strong>Message:</strong>
+              <div class="message">${data.message || 'No message provided.'}</div>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+  `;
+
+  try {
+    await transporter.sendMail({
+      from: `"High Adventure Camps" <${process.env.EMAIL_FROM}>`,
+      to: process.env.ADMIN_EMAIL || process.env.EMAIL_FROM || '', 
+      subject: `[New Lead] Inquiry from ${data.name}`,
+      html: emailHtml,
+    });
+    console.log('Lead notification email sent successfully.');
+    return true;
+  } catch (error) {
+    console.error('Error sending lead notification email:', error);
+    return false;
+  }
+}

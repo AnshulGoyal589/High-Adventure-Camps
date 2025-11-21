@@ -63,7 +63,7 @@ export default function Activities() {
                   <div className="space-y-2 mb-4 text-sm">
                     <div className="flex items-center gap-2 text-foreground">
                       <Clock size={16} />
-                      <span>{activity.duration} hours</span>
+                      <span>{activity.duration} minutes</span>
                     </div>
                     <div className="flex items-center gap-2 text-foreground">
                       <Users size={16} />

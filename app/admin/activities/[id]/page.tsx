@@ -177,7 +177,7 @@ export default function EditActivity() {
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <div>
-                <label className="block text-sm font-semibold mb-2">Duration (hours) *</label>
+                <label className="block text-sm font-semibold mb-2">Duration (minutes) *</label>
                 <input
                   type="number"
                   name="duration"
