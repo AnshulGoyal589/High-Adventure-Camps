@@ -14,10 +14,10 @@ import { AdventureCarousel } from '@/components/adventure-carousel';
 import { ProfessionalImageGallery } from '@/components/image-carousel';
 
 export const metadata: Metadata = {
-  title: 'High Adventure Camps | Home',
+  title: 'High Adventure Camps | Camping in Manali',
   description: 'Experience thrilling adventure tours and packages in Manali with High Adventure Camps.',
   openGraph: {
-    title: 'High Adventure Camps | Home',
+    title: 'High Adventure Camps | Camping in Manali',
     description: 'Experience thrilling adventure tours and packages in Manali.',
   },
 };

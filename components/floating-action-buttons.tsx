@@ -7,9 +7,9 @@ import Link from 'next/link';
 import { useContactPopupStore } from '@/lib/store';
 
 // Replace with your actual details
-const WHATSAPP_NUMBER = '919876543210';
-const PHONE_NUMBER = '+919876543210';
-const INSTAGRAM_URL = 'https://instagram.com/highventurecamps';
+const WHATSAPP_NUMBER = '919736744322';
+const PHONE_NUMBER = '+919816054322';
+const INSTAGRAM_URL = 'https://www.instagram.com/highadventurecamps?igsh=MWR0cHJtM2EyOGtqcw==';
 
 export function FloatingActionButtons() {
   const [isOpen, setIsOpen] = useState(false);

@@ -12,7 +12,7 @@ const adventureActivities = [
   { name: 'Commando Net', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4hFAQ5-YzYHFeMyIne5lQCRpHUGyo36O6cA&s' },
   { name: 'Rock Climbing', imageUrl: 'https://images.unsplash.com/photo-1549909347-56fea3347a96?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cm9jayUyMGNsaW1iaW5nYWR2ZW50dXJlJTIwYWN0aXZpdHl8ZW58MHx8MHx8fDA%3D' },
   { name: 'Rappelling', imageUrl: 'https://plus.unsplash.com/premium_photo-1661964191329-fb1752fd721b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmFwcGVsaW5nJTIwYWR2ZW50dXJlJTIwYWN0aXZpdHl8ZW58MHx8MHx8fDA%3D' },
-  { name: 'Parallel Rope', imageUrl: 'https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop' },
+  { name: 'Parallel Rope', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763716913/camp-theva-heights-tents_lkg1ho.jpg' },
   { name: 'Trekking', imageUrl: 'https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop' },
   { name: 'Tent Pitching', imageUrl: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop' },
   { name: 'Team Building Games', imageUrl: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop' },
