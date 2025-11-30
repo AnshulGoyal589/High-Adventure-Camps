@@ -4,7 +4,7 @@ import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { useEffect, useState } from 'react';
 import { Tour } from '@/lib/types';
-import { MapPin, Users, Calendar, DollarSign, CheckCircle, Loader, AlertCircle } from 'lucide-react';
+import { MapPin, Users, Calendar, CheckCircle, Loader, AlertCircle } from 'lucide-react';
 import { useAuth } from '@clerk/nextjs';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';

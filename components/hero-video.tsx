@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export function HeroVideo() {
   const posterImageUrl = 'https://ik.imagekit.io/tskgtjqxr/WhatsApp%20Image%202025-11-20%20at%203.21.48%20PM.jpeg';
-  const videoUrl = "https://ik.imagekit.io/tskgtjqxr/Manali%20Camp%20(3).mp4";
+  // const videoUrl = "https://ik.imagekit.io/tskgtjqxr/Manali%20Camp%20(3).mp4";
 
   return (
     <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
@@ -24,9 +24,9 @@ export function HeroVideo() {
           muted
           playsInline
           poster={posterImageUrl}
-          key={videoUrl}
+          key={"hero-video.mp4"}
         >
-          <source src={videoUrl} type="video/mp4" />
+          <source src={"hero-video.mp4"} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>

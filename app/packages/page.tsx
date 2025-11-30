@@ -4,9 +4,8 @@ import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { useEffect, useState } from 'react';
 import { Tour } from '@/lib/types';
-import { MapPin, Users, Calendar, DollarSign, Loader } from 'lucide-react';
+import { MapPin, Users, Calendar, Loader } from 'lucide-react';
 import Link from 'next/link';
-import type { Metadata } from 'next';
 
 export default function Packages() {
   const [tours, setTours] = useState<Tour[]>([]);
@@ -40,15 +39,15 @@ export default function Packages() {
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-gradient-to-r from-primary/5 to-secondary/5 py-16">
+      {/* <section className="bg-gradient-to-r from-primary/5 to-secondary/5 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-5xl font-bold mb-4">Adventure Packages</h1>
           <p className="text-lg text-muted-foreground">Curated experiences for every adventure seeker</p>
         </div>
-      </section>
+      </section> */}
 
       {/* Content */}
-      <section className="py-20 bg-background">
+      <section className="pb-20 pt-8 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Filters */}
           <div className="mb-12">

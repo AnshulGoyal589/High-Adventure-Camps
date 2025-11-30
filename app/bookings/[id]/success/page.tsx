@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { Booking } from '@/lib/types';
 import { useAuth } from '@clerk/nextjs';
 import { useRouter, useParams } from 'next/navigation';
-import { CheckCircle, Loader, AlertCircle, Download, MapPin, Calendar, Users, DollarSign } from 'lucide-react';
+import { CheckCircle, Loader, AlertCircle, Download, MapPin, Calendar, Users } from 'lucide-react';
 import Link from 'next/link';
 
 export default function SuccessPage() {

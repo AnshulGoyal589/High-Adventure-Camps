@@ -3,10 +3,10 @@
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { useEffect, useState } from 'react';
-import { Tour, Booking } from '@/lib/types';
+import { Tour } from '@/lib/types';
 import { useAuth, useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
-import { Calendar, Users, DollarSign, AlertCircle, Loader } from 'lucide-react';
+import { AlertCircle, Loader } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
 export default function BookingPage() {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { MapPin, Users, Calendar, DollarSign } from 'lucide-react';
+import { MapPin, Users, Calendar, IndianRupee } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -109,8 +109,9 @@ export function FeaturedTours() {
                   {/* Price and CTA */}
                   <div className="flex items-center justify-between pt-2">
                     <div className="flex items-center gap-1">
-                      <DollarSign className="w-5 h-5 text-primary" />
+                      <IndianRupee className="w-5 h-5 text-primary" />
                       <span className="text-2xl font-bold text-primary">₹{tour.price.toLocaleString()}</span>
+                      / person
                     </div>
                     <Link
                       href={`/packages/${tour._id}`}

@@ -4,8 +4,7 @@ import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { useEffect, useState } from 'react';
 import { Activity } from '@/lib/types';
-import { Clock, Users, DollarSign, Loader } from 'lucide-react';
-import type { Metadata } from 'next';
+import { Clock, Users, Loader } from 'lucide-react';
 
 export default function Activities() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -32,7 +31,7 @@ export default function Activities() {
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-gradient-to-r from-primary/5 to-secondary/5 py-16">
+      <section className="bg-gradient-to-r from-primary/5 to-secondary/5 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-5xl font-bold mb-4">Adventure Activities</h1>
           <p className="text-lg text-muted-foreground">Thrilling experiences for every skill level</p>
@@ -40,7 +39,7 @@ export default function Activities() {
       </section>
 
       {/* Activities Grid */}
-      <section className="py-20 bg-background">
+      <section className="pb-20 pt-8 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
             <div className="flex items-center justify-center py-20">
