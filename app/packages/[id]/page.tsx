@@ -5,7 +5,7 @@ import { Footer } from '@/components/footer';
 import { useEffect, useState } from 'react';
 import { Tour } from '@/lib/types';
 import { MapPin, Users, Calendar, CheckCircle, Loader, AlertCircle } from 'lucide-react';
-import { useAuth } from '@clerk/nextjs';
+import { useAuth, useClerk, useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -14,6 +14,8 @@ export default function PackageDetail({ params }: { params: { id: string } }) {
   const [loading, setLoading] = useState(true);
   const { userId } = useAuth();
   const router = useRouter();
+  const { isSignedIn } = useUser();
+  const { openSignIn } = useClerk();
 
   useEffect(() => {
     const fetchTour = async () => {
@@ -32,13 +34,13 @@ export default function PackageDetail({ params }: { params: { id: string } }) {
     fetchTour();
   }, [params.id]);
 
-  const handleBookNow = () => {
-    if (!userId) {
-      router.push('/sign-in');
-      return;
-    }
-    router.push(`/packages/${params.id}/booking`);
-  };
+  // const handleBookNow = () => {
+  //   if (!userId) {
+  //     router.push('/sign-in');
+  //     return;
+  //   }
+  //   router.push(`/packages/${params.id}/booking`);
+  // };
 
   if (loading) {
     return (
@@ -205,12 +207,21 @@ export default function PackageDetail({ params }: { params: { id: string } }) {
                   <p className="text-sm text-muted-foreground">per person</p>
                 </div>
 
-                <button
-                  onClick={handleBookNow}
-                  className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition mb-3"
-                >
-                  {userId ? 'Book Now' : 'Sign In to Book'}
-                </button>
+                {isSignedIn ? (
+                  <Link
+                    href={`/packages/${params.id}/booking`}
+                    className="w-full btn-primary text-center block"
+                  >
+                    Book This Activity
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => openSignIn({ afterSignInUrl: window.location.href })}
+                    className="w-full btn-primary text-center"
+                  >
+                    Sign in to Book
+                  </button>
+                )}
 
                 {!userId && (
                   <p className="text-xs text-muted-foreground text-center">

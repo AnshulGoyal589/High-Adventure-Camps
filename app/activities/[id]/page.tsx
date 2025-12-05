@@ -7,7 +7,8 @@ import { useParams } from 'next/navigation';
 import { Activity } from '@/lib/types';
 import { Clock, MapPin, Users, CheckCircle, Loader } from 'lucide-react';
 import Link from 'next/link';
-import { useUser } from '@clerk/nextjs';
+import { useUser , useClerk } from '@clerk/nextjs';
+import { Button } from '@/components/ui/button';
 
 export default function ActivityDetail() {
   const { id } = useParams();
@@ -15,6 +16,7 @@ export default function ActivityDetail() {
   const [activity, setActivity] = useState<Activity | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const { openSignIn } = useClerk();
 
   useEffect(() => {
     const fetchActivity = async () => {
@@ -203,15 +205,6 @@ export default function ActivityDetail() {
                 </div>
               </div>
 
-              <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-                <p className="text-sm text-muted-foreground mb-2">Ready for an adventure?</p>
-                <Link 
-                  href={isSignedIn ? '/packages' : '/sign-in'}
-                  className="w-full btn-primary text-center block"
-                >
-                  Book This Activity
-                </Link>
-              </div>
             </div>
           </div>
         </div>

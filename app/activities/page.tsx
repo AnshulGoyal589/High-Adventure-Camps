@@ -4,7 +4,8 @@ import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { useEffect, useState } from 'react';
 import { Activity } from '@/lib/types';
-import { Clock, Users, Loader } from 'lucide-react';
+import { Clock, Users, Loader, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Activities() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -48,6 +49,7 @@ export default function Activities() {
           ) : activities.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {activities.map((activity) => (
+                <Link href={`/activities/${activity._id}`} key={activity._id}>
                 <div key={activity._id} className="adventure-card">
                   {activity.images?.[0] && (
                     <img 
@@ -72,11 +74,12 @@ export default function Activities() {
 
                   <div className="flex items-center justify-between pt-4 border-t border-border">
                     <span className="text-2xl font-bold text-primary">₹{activity.price.toLocaleString()}</span>
-                    <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded text-sm font-medium">
-                      {activity.difficulty}
+                    <span className="flex gap-2 justify-center items-center px-3 py-1 bg-primary/10 text-primary rounded text-sm font-medium">
+                      Details <ArrowRight/>
                     </span>
                   </div>
                 </div>
+              </Link>
               ))}
             </div>
           ) : (

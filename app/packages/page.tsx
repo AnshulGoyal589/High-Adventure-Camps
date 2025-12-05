@@ -4,7 +4,7 @@ import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { useEffect, useState } from 'react';
 import { Tour } from '@/lib/types';
-import { MapPin, Users, Calendar, Loader } from 'lucide-react';
+import { MapPin, Users, Calendar, Loader, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Packages() {
@@ -37,15 +37,6 @@ export default function Packages() {
   return (
     <main className="min-h-screen">
       <Navbar />
-
-      {/* Hero */}
-      {/* <section className="bg-gradient-to-r from-primary/5 to-secondary/5 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl font-bold mb-4">Adventure Packages</h1>
-          <p className="text-lg text-muted-foreground">Curated experiences for every adventure seeker</p>
-        </div>
-      </section> */}
-
       {/* Content */}
       <section className="pb-20 pt-8 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -112,9 +103,9 @@ export default function Packages() {
 
                     <div className="flex items-center justify-between pt-4 border-t border-border">
                       <span className="text-2xl font-bold text-primary">₹{tour.price.toLocaleString()}</span>
-                      <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded text-sm font-medium">
-                        {tour.difficulty}
-                      </span>
+                      <span className="flex gap-2 justify-center items-center px-3 py-1 bg-primary/10 text-primary rounded text-sm font-medium">
+                      Details <ArrowRight/>
+                    </span>
                     </div>
                   </div>
                 </Link>
