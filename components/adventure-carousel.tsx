@@ -7,21 +7,21 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 // --- Data for Adventure Activities ---
 // IMPORTANT: Replace these placeholder image URLs with your actual high-quality photos.
 const adventureActivities = [
-  { name: 'Zipline', imageUrl: 'https://plus.unsplash.com/premium_photo-1664302954288-b3a858d59961?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8emlwJTIwbGluZXxlbnwwfHwwfHx8MA%3D%3D' },
-  { name: 'Burma Bridge', imageUrl: 'https://images.unsplash.com/photo-1682785060782-5c65cbdc3575?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QnVybWElMjBCcmlkZ2UlMjBhZHZlbnR1cmUlMjBhY3Rpdml0eXxlbnwwfHwwfHx8MA%3D%3D' },
-  { name: 'Commando Net', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4hFAQ5-YzYHFeMyIne5lQCRpHUGyo36O6cA&s' },
-  { name: 'Rock Climbing', imageUrl: 'https://images.unsplash.com/photo-1549909347-56fea3347a96?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cm9jayUyMGNsaW1iaW5nYWR2ZW50dXJlJTIwYWN0aXZpdHl8ZW58MHx8MHx8fDA%3D' },
-  { name: 'Rappelling', imageUrl: 'https://plus.unsplash.com/premium_photo-1661964191329-fb1752fd721b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmFwcGVsaW5nJTIwYWR2ZW50dXJlJTIwYWN0aXZpdHl8ZW58MHx8MHx8fDA%3D' },
-  { name: 'Parallel Rope', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763716913/camp-theva-heights-tents_lkg1ho.jpg' },
-  { name: 'Trekking', imageUrl: 'https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop' },
-  { name: 'Tent Pitching', imageUrl: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop' },
-  { name: 'Team Building Games', imageUrl: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop' },
-  { name: 'Mountaineering', imageUrl: 'https://images.unsplash.com/photo-1631009171055-44efe8c6a868?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TW91bnRhaW5lZXJpbmdhZHZlbnR1cmUlMjBhY3Rpdml0eXxlbnwwfHwwfHx8MA%3D%3D' },
-  { name: 'Nature Walks', imageUrl: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2071&auto=format&fit=crop' },
-  { name: 'Log Walk', imageUrl: 'https://www.discoveryvillage.in/_next/image?url=https%3A%2F%2Fdiscovery-village-media-migrate-1.s3.ap-south-1.amazonaws.com%2FActivity%2BImages%2FActivities%2F222*185%2FVertical%2BLog%2BClimbing%2B-%2BTile.png&w=750&q=75' },
-  { name: 'Net Walk', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSypjdFmdUTeWe9Zr0vwsIlwLiviiM8GYB0GtnshnXM-H_rNnLrEqh3kxnzZyMsPfiniN8&usqp=CAU' },
-  { name: 'Balancing Beam', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScAlQ14Lk-QH6jPb2ZpqDcErDhGoyUEaUbSJcTWI6EA1eWNbHes7Y8JlHH1gImRoEabhw&usqp=CAU' },
-  { name: 'Bamboo Bridge', imageUrl: 'https://d26dp53kz39178.cloudfront.net/media/uploads/products/02_result-1661166756234.webp' },
+  { name: 'Zipline', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764945597/zipline_rovldl.jpg' },
+  { name: 'Burma Bridge', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764946161/c5ae99ce-1636-4810-9b76-674971016b5e_i2tenx.jpg' },
+  { name: 'Commando Net', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764945946/commando_net_wawz4f.jpg' },
+  { name: 'Rock Climbing', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764946116/Rock_climbing_q599nw.jpg' },
+  { name: 'Rappelling', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764946069/4347fcff-6732-446b-ba04-033341c0c146_bevt88.jpg' },
+  { name: 'Parallel Rope', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764945895/parallel_rope_qrjal4.jpg' },
+  { name: 'Trekking', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764946222/Everest-Basecamp-image6-2_ryzlmo.webp' },
+  { name: 'Tent Pitching', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764946258/7G8A5951_c58leb.jpg' },
+  // { name: 'Team Building Games', imageUrl: '' },
+  { name: 'Mountaineering', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764946330/Credit-NPS-Photo-Emily-Junck_f2vsu1.jpg' },
+  // { name: 'Nature Walks', imageUrl: '' },
+  { name: 'Log Walk', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764945638/log_walk_nsrg1n.jpg' },
+  // { name: 'Net Walk', imageUrl: '' },
+  { name: 'Balancing Beam', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764945777/balancing_beam_p1mwxg.jpg' },
+  // { name: 'Bamboo Bridge', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764945638/log_walk_nsrg1n.jpg' },
 ];
  
 const emblaOptions = {
