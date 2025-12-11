@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Tour } from '@/lib/types';
 import { Calendar, MapPin, Users, TrendingUp, Loader } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Tours() {
   const [tours, setTours] = useState<Tour[]>([]);
@@ -51,9 +52,11 @@ export default function Tours() {
                   <div className="h-full adventure-card hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
                     {tour.images?.[0] && (
                       <div className="relative">
-                        <img 
+                        <Image 
                           src={tour.images[0] || "/placeholder.svg"} 
                           alt={tour.title}
+                          width={400}
+                          height={192}
                           className="w-full h-56 object-cover rounded-lg mb-4"
                         />
                         {tour.featured && (

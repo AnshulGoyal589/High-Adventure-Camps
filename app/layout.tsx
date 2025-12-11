@@ -101,7 +101,7 @@ export default function RootLayout({
                   addressCountry: 'IN',
                 },
                 url: 'https://highventurecamps.com',
-                telephone: '+91-XXXXXXXXXX', // Remember to update this
+                telephone: '+91-9736744322', // Remember to update this
                 sameAs: [
                   'https://facebook.com/highventurecamps',
                   'https://instagram.com/highventurecamps',

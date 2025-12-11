@@ -12,7 +12,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Image src="https://res.cloudinary.com/dumelzfsg/image/upload/v1763485387/header-logo_bjcrcq.png" alt="Logo" width={44} height={44} />
+              <Image src="https://res.cloudinary.com/drr75ydni/image/upload/v1765464931/header-logo_1_pzqawp.png" alt="Logo" width={44} height={44} />
               <h3 className="font-bold text-lg">High Adventure Camps</h3>
             </div>
             <p className="text-sm opacity-90">

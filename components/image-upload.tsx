@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { Upload, X, Loader } from 'lucide-react';
+import Image from 'next/image';
 
 interface ImageUploadProps {
   images: string[];
@@ -112,9 +113,11 @@ export function ImageUpload({ images, onImagesChange, maxImages = 10 }: ImageUpl
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {images.map((image, index) => (
             <div key={index} className="relative group">
-              <img
+              <Image
                 src={image || "/placeholder.svg"}
                 alt={`Upload ${index + 1}`}
+                width={400}
+                height={240}
                 className="w-full h-24 object-cover rounded-lg"
               />
               <button

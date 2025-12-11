@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Activity } from '@/lib/types';
 import { Clock, Users, Loader, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Activities() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -52,9 +53,11 @@ export default function Activities() {
                 <Link href={`/activities/${activity._id}`} key={activity._id}>
                 <div key={activity._id} className="adventure-card">
                   {activity.images?.[0] && (
-                    <img 
+                    <Image 
                       src={activity.images[0] || "/placeholder.svg"} 
                       alt={activity.title}
+                      width={400}
+                      height={192}
                       className="w-full h-48 object-cover rounded-lg mb-4"
                     />
                   )}

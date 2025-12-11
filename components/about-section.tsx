@@ -1,6 +1,7 @@
 'use client';
 
 import { CheckCircle } from 'lucide-react';
+import Image from 'next/image';
 
 export function AboutSection() {
   const specificHighlights = [
@@ -47,9 +48,11 @@ export function AboutSection() {
           {/* Image */}
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg transform rotate-3"></div>
-            <img
-              src="https://res.cloudinary.com/dumelzfsg/image/upload/v1763563786/DJI_0292_rao6r9.jpg"
+            <Image
+              src="https://res.cloudinary.com/drr75ydni/image/upload/v1765465557/2_ltc1jz.jpg"
               alt="High Adventure Camps Manali Group Camping Setup"
+              width={600}
+              height={400}
               className="relative w-full h-auto rounded-lg shadow-xl"
             />
           </div>

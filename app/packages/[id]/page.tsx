@@ -8,6 +8,7 @@ import { MapPin, Users, Calendar, CheckCircle, Loader, AlertCircle } from 'lucid
 import { useAuth, useClerk, useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function PackageDetail({ params }: { params: { id: string } }) {
   const [tour, setTour] = useState<Tour | null>(null);
@@ -83,17 +84,21 @@ export default function PackageDetail({ params }: { params: { id: string } }) {
           <div className="mb-8">
             {tour.images && tour.images.length > 0 && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <img
+                <Image
                   src={tour.images[0] || "/placeholder.svg"}
                   alt={tour.title}
+                  width={800}
+                  height={400}
                   className="w-full h-96 object-cover rounded-lg"
                 />
                 <div className="grid grid-cols-2 gap-4">
                   {tour.images.slice(1, 5).map((img, idx) => (
-                    <img
+                    <Image
                       key={idx}
                       src={img || "/placeholder.svg"}
                       alt={`${tour.title} ${idx + 2}`}
+                      width={400}
+                      height={220}
                       className="w-full h-44 object-cover rounded-lg"
                     />
                   ))}

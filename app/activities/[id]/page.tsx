@@ -9,6 +9,7 @@ import { Clock, MapPin, Users, CheckCircle, Loader } from 'lucide-react';
 import Link from 'next/link';
 import { useUser , useClerk } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 export default function ActivityDetail() {
   const { id } = useParams();
@@ -69,9 +70,11 @@ export default function ActivityDetail() {
           <div className="grid md:grid-cols-3 gap-6">
             {/* Main Image */}
             <div className="md:col-span-2">
-              <img 
+              <Image 
                 src={activity.images?.[selectedImageIndex] || "/placeholder.svg"} 
                 alt={activity.title}
+                width={800}
+                height={400}
                 className="w-full h-96 object-cover rounded-lg"
               />
               {/* Thumbnail Gallery */}
@@ -85,7 +88,7 @@ export default function ActivityDetail() {
                         selectedImageIndex === idx ? 'border-primary' : 'border-transparent'
                       }`}
                     >
-                      <img src={img || "/placeholder.svg"} alt={`${activity.title} ${idx + 1}`} className="w-full h-full object-cover" />
+                      <Image src={img || "/placeholder.svg"} alt={`${activity.title} ${idx + 1}`} width={80} height={80} className="w-full h-full object-cover" />
                     </button>
                   ))}
                 </div>

@@ -3,25 +3,22 @@
 import { useState, useEffect, useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 
 // --- Data for Adventure Activities ---
 // IMPORTANT: Replace these placeholder image URLs with your actual high-quality photos.
 const adventureActivities = [
-  { name: 'Zipline', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764945597/zipline_rovldl.jpg' },
-  { name: 'Burma Bridge', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764946161/c5ae99ce-1636-4810-9b76-674971016b5e_i2tenx.jpg' },
-  { name: 'Commando Net', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764945946/commando_net_wawz4f.jpg' },
-  { name: 'Rock Climbing', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764946116/Rock_climbing_q599nw.jpg' },
-  { name: 'Rappelling', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764946069/4347fcff-6732-446b-ba04-033341c0c146_bevt88.jpg' },
-  { name: 'Parallel Rope', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764945895/parallel_rope_qrjal4.jpg' },
-  { name: 'Trekking', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764946222/Everest-Basecamp-image6-2_ryzlmo.webp' },
-  { name: 'Tent Pitching', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764946258/7G8A5951_c58leb.jpg' },
-  // { name: 'Team Building Games', imageUrl: '' },
-  { name: 'Mountaineering', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764946330/Credit-NPS-Photo-Emily-Junck_f2vsu1.jpg' },
-  // { name: 'Nature Walks', imageUrl: '' },
-  { name: 'Log Walk', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764945638/log_walk_nsrg1n.jpg' },
-  // { name: 'Net Walk', imageUrl: '' },
-  { name: 'Balancing Beam', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764945777/balancing_beam_p1mwxg.jpg' },
-  // { name: 'Bamboo Bridge', imageUrl: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1764945638/log_walk_nsrg1n.jpg' },
+  { name: 'Zipline', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466994/zipline_ccv4uz.jpg' },
+  { name: 'Burma Bridge', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466990/c5ae99ce-1636-4810-9b76-674971016b5e_bpenkt.jpg' },
+  { name: 'Commando Net', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466994/commando_net_ocdpdy.jpg' },
+  { name: 'Rock Climbing', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765468052/Rock_climbing_1_ikxgzy.jpg' },
+  { name: 'Rappelling', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466992/4347fcff-6732-446b-ba04-033341c0c146_lgu1n8.jpg' },
+  { name: 'Parallel Rope', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466997/parallel_rope_kv4s3b.jpg' },
+  { name: 'Trekking', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765471836/Intrepid-Travel-Chile-Patagonia-trekking-002_tz0i1a.jpg' },
+  { name: 'Tent Pitching', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765471778/7G8A0916_evhdau.jpg' },
+  { name: 'Mountaineering', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765471811/custom-mountaineering-Alpine-Garden-960x960_nuehtj.jpg' },
+  { name: 'Log Walk', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466996/log_walk_rvnskl.jpg' },
+  { name: 'Balancing Beam', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466994/balancing_beam_pl12fw.jpg' },
 ];
  
 const emblaOptions = {
@@ -75,9 +72,11 @@ export function AdventureCarousel() {
               {adventureActivities.map((activity, index) => (
                 <div key={index} className="flex-grow-0 flex-shrink-0 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4 pl-4">
                   <div className="group relative block aspect-[4/5] w-full overflow-hidden rounded-xl shadow-lg">
-                    <img
+                    <Image
                       src={activity.imageUrl}
                       alt={activity.name}
+                      width={400}
+                      height={500}
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>

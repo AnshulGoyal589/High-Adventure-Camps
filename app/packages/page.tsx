@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Tour } from '@/lib/types';
 import { MapPin, Users, Calendar, Loader, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Packages() {
   const [tours, setTours] = useState<Tour[]>([]);
@@ -77,9 +78,11 @@ export default function Packages() {
                 <Link key={tour._id} href={`/packages/${tour._id}`}>
                   <div className="adventure-card cursor-pointer">
                     {tour.images?.[0] && (
-                      <img 
+                      <Image 
                         src={tour.images[0] || "/placeholder.svg"} 
                         alt={tour.title}
+                        width={400}
+                        height={192}
                         className="w-full h-48 object-cover rounded-lg mb-4"
                       />
                     )}
