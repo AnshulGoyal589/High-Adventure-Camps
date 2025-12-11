@@ -27,7 +27,7 @@ const images: GalleryImage[] = [
     { id: '13', src: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765474212/DSC04153_nfkl0e.jpg', alt: 'Aerial view of the adventure camp' },
     { id: '14', src: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466990/c5ae99ce-1636-4810-9b76-674971016b5e_bpenkt.jpg', alt: 'Balancing on a wooden beam' },
     { id: '15', src: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466994/commando_net_ocdpdy.jpg', alt: 'Crossing a rustic bamboo bridge over a stream' },
-    { id: '16', src: 'https://res.cloudinary.com/dumelzfsg/image/upload/v1763709849/DJI_0300_z93mjf.jpg', alt: 'Navigating a challenging net walk' },
+    { id: '16', src: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466992/4347fcff-6732-446b-ba04-033341c0c146_lgu1n8.jpg', alt: 'Navigating a challenging net walk' },
     { id: '17', src: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466994/zipline_ccv4uz.jpg', alt: 'Carefully walking across a log bridge' },
     { id: '18', src: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765474388/2_m8ujiy.jpg', alt: 'Adventurer on a high-ropes course' },
     { id: '19', src: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765474447/1_htn5kz.jpg', alt: 'Excitement on the zipline' },
