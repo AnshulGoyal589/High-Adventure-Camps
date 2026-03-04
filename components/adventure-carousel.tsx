@@ -8,17 +8,17 @@ import Image from 'next/image';
 // --- Data for Adventure Activities ---
 // IMPORTANT: Replace these placeholder image URLs with your actual high-quality photos.
 const adventureActivities = [
-  { name: 'Zipline', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466994/zipline_ccv4uz.jpg' },
-  { name: 'Burma Bridge', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466990/c5ae99ce-1636-4810-9b76-674971016b5e_bpenkt.jpg' },
-  { name: 'Commando Net', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466994/commando_net_ocdpdy.jpg' },
-  { name: 'Rock Climbing', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765468052/Rock_climbing_1_ikxgzy.jpg' },
-  { name: 'Rappelling', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466992/4347fcff-6732-446b-ba04-033341c0c146_lgu1n8.jpg' },
-  { name: 'Parallel Rope', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466997/parallel_rope_kv4s3b.jpg' },
-  { name: 'Trekking', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765471836/Intrepid-Travel-Chile-Patagonia-trekking-002_tz0i1a.jpg' },
-  { name: 'Tent Pitching', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765471778/7G8A0916_evhdau.jpg' },
-  { name: 'Mountaineering', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765471811/custom-mountaineering-Alpine-Garden-960x960_nuehtj.jpg' },
-  { name: 'Log Walk', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466996/log_walk_rvnskl.jpg' },
-  { name: 'Balancing Beam', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765466994/balancing_beam_pl12fw.jpg' },
+  { name: 'Zipline', imageUrl: '/images/zipline.jpeg' },
+  { name: 'Burma Bridge', imageUrl: '/images/burma_bridge.jpeg' },
+  { name: 'Commando Net', imageUrl: '/images/commando_net.jpeg' },
+  // { name: 'Rock Climbing', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765468052/Rock_climbing_1_ikxgzy.jpg' },
+  { name: 'Rappelling', imageUrl: '/images/rapelling.jpeg' },
+  { name: 'Parallel Rope', imageUrl: '/images/parallel_rope.jpeg' },
+  // { name: 'Trekking', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765471836/Intrepid-Travel-Chile-Patagonia-trekking-002_tz0i1a.jpg' },
+  // { name: 'Tent Pitching', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765471778/7G8A0916_evhdau.jpg' },
+  // { name: 'Mountaineering', imageUrl: 'https://res.cloudinary.com/drr75ydni/image/upload/v1765471811/custom-mountaineering-Alpine-Garden-960x960_nuehtj.jpg' },
+  { name: 'Log Walk', imageUrl: '/images/log_walk.jpeg' },
+  { name: 'Balancing Beam', imageUrl: '/images/balancing_beam.jpeg' },
 ];
  
 const emblaOptions = {

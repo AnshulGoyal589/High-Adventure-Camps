@@ -49,7 +49,7 @@ export function AboutSection() {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg transform rotate-3"></div>
             <Image
-              src="https://res.cloudinary.com/drr75ydni/image/upload/v1765465557/2_ltc1jz.jpg"
+              src="/images/balancing_beam.jpeg"
               alt="High Adventure Camps Manali Group Camping Setup"
               width={600}
               height={400}
