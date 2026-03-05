@@ -34,7 +34,7 @@ export function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <Image src="https://res.cloudinary.com/drr75ydni/image/upload/v1765464931/header-logo_1_pzqawp.png" alt="Logo" width={44} height={44} />
+            <Image src="/images/logo.png" alt="Logo" width={44} height={44} />
             <span className="font-bold text-xl hidden sm:inline text-foreground">
               High Adventure
             </span>
